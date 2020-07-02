@@ -11,8 +11,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.get("/", function(req, res) {
+  res.render("home");
+});
 
+app.get("/register", function(req, res) {
+  // res.render("register")
+  console.log("here will be the register view")
+});
 
+app.get("/login", function(req, res) {
+  // res.render("login");
+  console.log("here will be the login view")
+});
 
 
 
