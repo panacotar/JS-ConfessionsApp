@@ -16,13 +16,11 @@ app.get("/", function(req, res) {
 });
 
 app.get("/register", function(req, res) {
-  // res.render("register")
-  console.log("here will be the register view")
+  res.render("register")
 });
 
 app.get("/login", function(req, res) {
-  // res.render("login");
-  console.log("here will be the login view")
+  res.render("login");
 });
 
 
