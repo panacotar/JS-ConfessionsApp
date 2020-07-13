@@ -23,6 +23,9 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 mongoose.connect("mongodb://" + process.env.DB_HOST + "/confessionsUserDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
