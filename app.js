@@ -89,7 +89,7 @@ function(accessToken, refreshToken, profile, cb) {
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: "https://confessions-app.herokuapp.com/auth/facebook/confessions"
+  callbackURL: "https://confessions-app.herokuapp.com/people/auth/facebook/confessions"
   },
   function (accessToken, refreshToken, profile, cb) {
       // console.log(profile);
