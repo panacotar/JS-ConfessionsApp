@@ -26,10 +26,22 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://" + process.env.DB_HOST + "/confessionsUserDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://" + process.env.DB_HOST + "/confessionsUserDB", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+// Remote DB
+mongoose.connect(
+  "mongodb+srv://dario-admin:" +
+    process.env.DB_PASS +
+    "@cluster0-bhjc9.mongodb.net/confessionsDB",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+
 mongoose.set("useCreateIndex", true);
 
 
