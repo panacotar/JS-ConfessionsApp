@@ -7,9 +7,9 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportMongoose = require("passport-local-mongoose");
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
-const findOrCreate = require('mongoose-findorcreate');
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
+const findOrCreate = require("mongoose-findorcreate");
 
 const app = express();
 
@@ -92,29 +92,12 @@ passport.use(new FacebookStrategy({
   callbackURL: "http://localhost:3000/auth/facebook/confessions"
   },
   function (accessToken, refreshToken, profile, cb) {
-      console.log(profile);
+      // console.log(profile);
       User.findOrCreate({ facebookId: profile.id }, function (err, user) {
         return cb(err, user);
       });
     })
 );
-
-
-// FB.getLoginStatus(function(response) {
-//     statusChangeCallback(response);
-// });
-
-// {
-//     status: 'connected',
-//     authResponse: {
-//         accessToken: '...',
-//         expiresIn:'...',
-//         signedRequest:'...',
-//         userID:'...'
-//     }
-// }
-
-
 
 app.get("/", (req, res) => {
   res.render("home", { currentUser: req.user});
@@ -132,9 +115,9 @@ function(req, res) {
 
 app.get("/auth/facebook", passport.authenticate("facebook"));
 
-app.get('/auth/facebook/confessions',
-  passport.authenticate('facebook', { successRedirect: '/confessions',
-                                      failureRedirect: '/login' }));
+app.get("/auth/facebook/confessions",
+  passport.authenticate("facebook", { successRedirect: "/confessions",
+                                      failureRedirect: "/login" }));
   
 app.get("/register", (req, res) => {
   res.render("register")
