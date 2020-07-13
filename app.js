@@ -8,6 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 const passportMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 
 const app = express();
@@ -50,7 +51,8 @@ mongoose.set("useCreateIndex", true);
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
-  googleId: String
+  googleId: String,
+  facebookId: String
 });
 
 userSchema.plugin(passportMongoose);
@@ -78,14 +80,39 @@ passport.use(new GoogleStrategy({
 },
 function(accessToken, refreshToken, profile, cb) {
   //log profile
-  console.log(profile);
-
   User.findOrCreate({ googleId: profile.id }, function (err, user) {
     return cb(err, user);
   });
 }
 ));
 
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: "http://localhost:3000/auth/facebook/confessions"
+  },
+  function (accessToken, refreshToken, profile, cb) {
+      console.log(profile);
+      User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+        return cb(err, user);
+      });
+    })
+);
+
+
+// FB.getLoginStatus(function(response) {
+//     statusChangeCallback(response);
+// });
+
+// {
+//     status: 'connected',
+//     authResponse: {
+//         accessToken: '...',
+//         expiresIn:'...',
+//         signedRequest:'...',
+//         userID:'...'
+//     }
+// }
 
 
 
@@ -103,6 +130,11 @@ function(req, res) {
   res.redirect("/confessions");
 });
 
+app.get("/auth/facebook", passport.authenticate("facebook"));
+
+app.get('/auth/facebook/confessions',
+  passport.authenticate('facebook', { successRedirect: '/confessions',
+                                      failureRedirect: '/login' }));
   
 app.get("/register", (req, res) => {
   res.render("register")
