@@ -113,7 +113,7 @@ function(req, res) {
   res.redirect("/confessions");
 });
 
-app.get("/auth/facebook", passport.authenticate("facebook"));
+app.get("people/auth/facebook", passport.authenticate("facebook"));
 
 app.get("/auth/facebook/confessions",
   passport.authenticate("facebook", { successRedirect: "/confessions",
