@@ -38,7 +38,14 @@ const userSchema = new mongoose.Schema({
   password: String,
 });
 
-const User = new mongoose.model("User", userSchema )
+userSchema.plugin(passportMongoose);
+
+const User = new mongoose.model("User", userSchema );
+
+passport.use(User.createStrategy());
+ 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -52,8 +59,26 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get("/confessions", (req, res) => {
+  if (req.isAuthenticated()){
+    res.render("confessions");
+  } else {
+    res.redirect("/login");
+  }
+});
+
 app.post("/register", (req, res) => {
 
+  User.register({username: req.body.username}, req.body.password, (err, user) => {
+    if (err){
+      console.log(err);
+      res.redirect("/register");
+    } else {
+      passport.authenticate("local")(req, res, () => {
+        res.redirect("/confessions");
+      });
+    }
+  });
 
 });
 
