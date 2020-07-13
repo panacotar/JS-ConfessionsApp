@@ -48,7 +48,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", { currentUser: req.user});
 });
 
 app.get("/register", (req, res) => {
@@ -61,7 +61,7 @@ app.get("/login", (req, res) => {
 
 app.get("/confessions", (req, res) => {
   if (req.isAuthenticated()){
-    res.render("confessions");
+    res.render("confessions", { currentUser: req.user});
   } else {
     res.redirect("/login");
   }
