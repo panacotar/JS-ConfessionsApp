@@ -89,7 +89,7 @@ function(accessToken, refreshToken, profile, cb) {
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: "https://confessions-app.herokuapp.com/people/auth/facebook/confessions"
+  callbackURL: "https://confessions-app.herokuapp.com/auth/facebook/confessions"
   },
   function (accessToken, refreshToken, profile, cb) {
       // console.log(profile);
@@ -113,7 +113,7 @@ function(req, res) {
   res.redirect("/confessions");
 });
 
-app.get("people/auth/facebook", passport.authenticate("facebook"));
+app.get("/auth/facebook", passport.authenticate("facebook"));
 
 app.get("/auth/facebook/confessions",
   passport.authenticate("facebook", { successRedirect: "/confessions",
