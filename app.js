@@ -116,8 +116,10 @@ function(req, res) {
 app.get("/auth/facebook", passport.authenticate("facebook"));
 
 app.get("/auth/facebook/confessions",
-  passport.authenticate("facebook", { successRedirect: "/confessions",
-                                      failureRedirect: "/login" }));
+  passport.authenticate("facebook", { 
+    successRedirect: "/confessions",
+    failureRedirect: "/login" })
+);
   
 app.get("/register", (req, res) => {
   res.render("register")
