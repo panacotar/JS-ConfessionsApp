@@ -1,6 +1,8 @@
 ## JS-ConfessionsApp
 Web application that lets users submit confessions/ secret thoughts/ revelations/ disclosures. 
+
 This app allows users' sign-up/login with an email or password or using their Google (and soon Facebook) accounts (OAuth 2.0). 
+
 It uses *express-session* package that will keep the user logged-in until they restart the browser or logout.
 
 ------------
