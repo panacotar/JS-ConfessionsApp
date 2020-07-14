@@ -8,7 +8,7 @@ It uses *express-session* package that will keep the user logged-in until they r
 ------------
 [ConfessionsApp](https://confessions-app.herokuapp.com/ "CTRL + click to open in new tab")
 
-Built with:
+### Built with:
 
 - Node.js
 - Bootstrap
@@ -20,3 +20,5 @@ Built with:
 - passport.js
 - passport-google-oauth20
 - passport-local-mongoose
+- **Database**:
+- - MongoDB
