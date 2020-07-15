@@ -52,7 +52,8 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   googleId: String,
-  facebookId: String
+  facebookId: String,
+  confession: String
 });
 
 userSchema.plugin(passportMongoose);
@@ -129,9 +130,19 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get("/confessions", (req, res) => {
+app.get("/confessions", (req, res) => {  
   if (req.isAuthenticated()){
-    res.render("confessions", { currentUser: req.user});
+    User.find({ "confession": { $exists: true, $ne: null } }, (err, resultUsers) => {
+      res.render("confessions", { currentUser: req.user, usersArr: resultUsers});
+    })
+  } else {
+    res.redirect("/login");
+  }
+});
+
+app.get("/submit", (req, res) => {
+  if (req.isAuthenticated()){
+    res.render("submit", { currentUser: req.user});
   } else {
     res.redirect("/login");
   }
@@ -175,6 +186,25 @@ app.post("/login", (req, res) => {
     }
   });
 
+});
+
+app.post("/submit", (req, res) => {
+  const inputConfession = req.body.confession;
+  console.log(req.user);
+
+  User.findById(req.user.id, (err, resultedUser) => {
+    if (err){
+      console.log(err);
+    } else {
+      if (resultedUser){
+
+      resultedUser.confession = inputConfession
+      resultedUser.save(() => {
+        res.redirect("/confessions")
+      });
+      }
+    }
+  });
 });
 
 
