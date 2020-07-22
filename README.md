@@ -6,7 +6,6 @@ This app allows users' sign-up/login with an email or password or using their Go
 It uses *express-session* package that will keep the user logged-in until they restart the browser or logout.
 
 ------------
-[ConfessionsApp](https://confessions-app.herokuapp.com/ "CTRL + click to open in new tab")
 
 ### Built with:
 
