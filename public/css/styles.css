@@ -4,8 +4,6 @@ body {
   text-align: center;
 }
 
-
-
 .centered {
   padding-top: 100px;
 }
@@ -18,7 +16,14 @@ body {
   background-color: #000;
 }
 
-/********** Home */
+.icons {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
 
 .title-icon {
   width: 20vw;
