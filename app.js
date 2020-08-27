@@ -138,11 +138,11 @@ app.get(
 );
 
 app.get("/register", (req, res) => {
-  res.render("register");
+  res.render("register", { currentUser: req.user });
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", { currentUser: req.user });
 });
 
 app.get("/confessions", (req, res) => {
