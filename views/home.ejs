@@ -1,14 +1,24 @@
 <%- include('partials/header') %>
 <%- include('partials/user_nav') %>
 
+
 <div class="jumbotron centered">
   <div class="container">
-    <img src="images/censor.png" alt="message with lock" class="home-img">
-    <h1 class="display-3">Confessions</h1>
-    <p class="lead">Don't carry your confessions with you, drop them here anonymously!</p>
-    <hr>
-    <a class="btn btn-light btn-lg" href="/register" role="button">Register</a>
-    <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
+    <div class="row">
+      <div class="col-sm-12">
+        <img src="images/censor.png" class="title-icon" alt="message with lock" >
+        <h1 class="display-3 title">Confessions</h1>
+        <p class="lead">Don't carry your confessions with you, drop them here anonymously!</p>
+        <hr>
+        <% if (currentUser) { %> 
+          <a class="btn btn-light btn-lg" href="/confessions">See collection</a>
+          <a class="btn btn-dark btn-lg" href="/logout" role="button">Log Out</a>
+        <% } else { %> 
+          <a class="btn btn-light btn-lg" href="/register" role="button">Register</a>
+          <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
+        <% } %> 
+      </div>
+    </div>
 
   </div>
 </div>
