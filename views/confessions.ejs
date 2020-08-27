@@ -1,10 +1,10 @@
 <%- include('partials/header') %>
 <%- include('partials/user_nav') %>
 
-<div class="jumbotron text-center">
+<div class="jumbotron text-center centered">
   <div class="container">
-    <i class="fas fa-key fa-6x"></i>
-    <h1 class="display-3">Confessions</h1>
+    <img src="images/censor.png" class="title-icon" alt="message with lock" >
+    <h1 class="display-3 title">Confessions</h1>
     <p class="secret-text">I slept covered in pizza last night.</p>
     <% usersArr.forEach(user => { %>
       <p class="secret-text"> <%=user.confession%> </p>  
