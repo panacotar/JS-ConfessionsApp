@@ -1,7 +1,4 @@
-<%- include('partials/header') %>
-<%- include('partials/navbar') %>
-
-
+<%- include('partials/header') %> <%- include('partials/user_nav') %>
 
 <div class="container mt-5">
   <h1>Login</h1>
@@ -10,16 +7,15 @@
     <div class="col-sm-8">
       <div class="card">
         <div class="card-body">
-
           <!-- Makes POST request to /login route -->
           <form action="/login" method="POST">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control" name="username">
+              <input type="email" class="form-control" name="username" />
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" name="password">
+              <input type="password" class="form-control" name="password" />
             </div>
             <button type="submit" class="btn btn-dark">Login</button>
           </form>
@@ -30,8 +26,12 @@
     <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
-            <i class="fab fa-google"></i>
+          <a
+            class="btn btn-block btn-social btn-google"
+            href="/auth/google"
+            role="button"
+          >
+            <i class="fab fa-google icons"></i>
             Sign In with Google
           </a>
         </div>
@@ -39,15 +39,17 @@
 
       <div class="card">
         <div class="card-body">
-          <a class="btn btn-block btn-social btn-google" href="/auth/facebook" role="button">
-            <i class="fab fa-facebook"></i>
+          <a
+            class="btn btn-block btn-social btn-google"
+            href="/auth/facebook"
+            role="button"
+          >
+            <i class="fab fa-facebook icons"></i>
             Sign In with Facebook
           </a>
         </div>
       </div>
-
     </div>
-    
   </div>
 </div>
 

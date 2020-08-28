@@ -1,20 +1,61 @@
-
 body {
-  background-color: #E8ECEF;
+  background-color: #e8ecef;
+  text-align: center;
 }
 
 .centered {
-    padding-top: 200px;
-    text-align: center;
+  padding-top: 100px;
 }
 
 .secret-text {
   text-align: center;
-  font-size: 2rem;
+  font-size: 5.5vw;
+  padding: 0 5px;
   color: #fff;
   background-color: #000;
 }
 
-.home-img {
-  width: 80px;
+.icons {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.title-icon {
+  width: 20vw;
+}
+
+.title {
+  font-size: 13vw;
+}
+
+@media (min-width: 568px) {
+  .secret-text {
+    font-size: 4.5vw;
+  }
+
+  .title {
+    font-size: 10vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .centered {
+    padding-top: 200px;
+  }
+
+  .title-icon {
+    width: 80px;
+  }
+
+  .title {
+    font-size: 4.5rem;
+  }
+
+  .secret-text {
+    font-size: 2rem;
+  }
 }
