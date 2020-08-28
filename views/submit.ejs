@@ -1,21 +1,22 @@
-<%- include('partials/header') %>
-<%- include('partials/user_nav') %>
+<%- include('partials/header') %> <%- include('partials/user_nav') %>
 
 <div class="container">
   <div class="jumbotron centered">
-    <img src="images/censor.png" class="title-icon" alt="message with lock" >
+    <img src="images/censor.png" class="title-icon" alt="message with lock" />
     <h1 class="display-3 title">Confessions</h1>
     <p class="lead">Drop your confession here anonymously!</p>
 
     <form action="/submit" method="POST">
-
       <div class="form-group">
-        <input type="text" class="form-control text-center" name="confession" placeholder="What's your secret?">
+        <input
+          type="text"
+          class="form-control text-center"
+          name="confession"
+          placeholder="What's your secret?"
+        />
       </div>
       <button type="submit" class="btn btn-dark">Submit</button>
     </form>
-
-
   </div>
 </div>
 <%- include('partials/footer') %>

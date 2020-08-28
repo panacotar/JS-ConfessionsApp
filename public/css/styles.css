@@ -1,6 +1,5 @@
-
 body {
-  background-color: #E8ECEF;
+  background-color: #e8ecef;
   text-align: center;
 }
 
@@ -43,14 +42,13 @@ body {
   }
 }
 
-
 @media (min-width: 768px) {
   .centered {
     padding-top: 200px;
   }
 
   .title-icon {
-   width: 80px 
+    width: 80px;
   }
 
   .title {
