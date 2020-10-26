@@ -3,8 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 
-require("./db/mongoose")
-const User = require("./models/user")
+require("./db/mongoose");
+const User = require("./models/user");
 
 const session = require("express-session");
 const passport = require("passport");
