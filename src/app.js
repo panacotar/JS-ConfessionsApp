@@ -2,13 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const mongoose = require("mongoose"); 
+
+require("./db/mongoose")
+const User = require("./models/user")
+
 const session = require("express-session");
 const passport = require("passport");
-const passportMongoose = require("passport-local-mongoose");
+
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
-const findOrCreate = require("mongoose-findorcreate");
 
 const app = express();
 
@@ -30,38 +32,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Local DB
-mongoose.connect("mongodb://" + process.env.DB_HOST + "/confessionsUserDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-// Remote DB
-// mongoose.connect(
-//   "mongodb+srv://dario-admin:" +
-//     process.env.DB_PASS +
-//     "@cluster0-bhjc9.mongodb.net/confessionsDB",
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   }
-// );
-
-mongoose.set("useCreateIndex", true);
-
-const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
-  googleId: String,
-  facebookId: String,
-  confession: String,
-});
-
-userSchema.plugin(passportMongoose, { usernameUnique: false });
-userSchema.plugin(findOrCreate);
-
-const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
 
@@ -236,5 +206,5 @@ if (port == null || port == "") {
   port = 3000;
 }
 app.listen(port, function () {
-  console.log("server at port 3000");
+  console.log("Server started at port 3000");
 });
